@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Muskartech.QRMenu.API.props" />
+</Project>

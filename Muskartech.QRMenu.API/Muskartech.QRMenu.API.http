@@ -1,0 +1,6 @@
+@Muskartech.QRMenu.API_HostAddress = http://localhost:5177
+
+GET {{Muskartech.QRMenu.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Muskartech.QRMenu.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+584551706fe4abb344ba11012e0eca8443da0094")]
 [assembly: System.Reflection.AssemblyProductAttribute("Muskartech.QRMenu.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Muskartech.QRMenu.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

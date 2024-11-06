@@ -1,3 +1,6 @@
+using Autofac;
+using Muskartech.QRMenu.Domain;
+using Muskartech.QRMenu.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -5,6 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterModule(new DomainModule());
+    containerBuilder.RegisterModule(new InfrastructureModule());
+});
 
 var app = builder.Build();
 

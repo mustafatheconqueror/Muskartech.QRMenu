@@ -1,6 +1,6 @@
 using MongoDB.Bson;
 
-namespace Muskartech.QRMenu.Domain.Common;
+namespace Muskartech.QRMenu.Domain.Entities;
 
 public interface IEntity
 {

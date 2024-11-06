@@ -1,5 +1,4 @@
 using MongoDB.Bson;
-using Muskartech.QRMenu.Domain.Common;
 
 namespace Muskartech.QRMenu.Domain.Entities;
 

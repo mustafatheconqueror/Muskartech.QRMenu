@@ -1,3 +1,4 @@
+using Humanizer;
 using MongoDB.Driver;
 using Muskartech.QRMenu.Domain.Entities;
 using Muskartech.QRMenu.Infrastructure.Exceptions;
@@ -7,7 +8,9 @@ namespace Muskartech.QRMenu.Infrastructure.Persistance.Repository;
 public abstract class Repository<T> where T : Entity
 {
     private readonly IMongoDatabase _database;
-    private IMongoCollection<T> Collection => _database.GetCollection<T>(typeof(T).Name);
+
+    private IMongoCollection<T> Collection => _database.GetCollection<T>(typeof(T).Name.Pluralize());
+
 
     protected Repository(MongoClient mongoClient, string dbName)
     {
@@ -43,5 +46,4 @@ public abstract class Repository<T> where T : Entity
             throw;
         }
     }
-
 }

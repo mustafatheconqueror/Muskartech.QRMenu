@@ -17,9 +17,9 @@ public class CategoriesController : BaseController
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [ProducesResponseType((int)HttpStatusCode.Conflict)]
-    public async Task<IActionResult> CreateOrder([FromBody] CreateCategoryCommand command, CancellationToken ct)
+    public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand command, CancellationToken ct)
     {
-        var commandResult = await this.Mediator.Send(command, ct);
+        var commandResult = await Mediator.Send(command, ct);
         return StatusCode((int)commandResult.HttpStatusCode, commandResult.Result);
     }
 }

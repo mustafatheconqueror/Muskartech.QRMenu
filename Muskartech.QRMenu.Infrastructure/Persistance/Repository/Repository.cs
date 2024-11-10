@@ -14,17 +14,17 @@ public abstract class Repository<T> where T : Entity
         _database = mongoClient.GetDatabase(dbName);
     }
 
-    public async Task InsertAsync(T entity)
+    public async Task InsertAsync(T entity, CancellationToken cancellationToken)
     {
         try
         {
-            await Collection.InsertOneAsync(entity);
+            await Collection.InsertOneAsync(entity, null, cancellationToken);
         }
         catch (MongoWriteException mongoWriteException)
         {
             var writeErrorCode = mongoWriteException.WriteError.Code;
 
-            if (writeErrorCode == 11000)
+            if (writeErrorCode == 11000) // Duplicate key error
             {
                 throw new IdempotencyException(mongoWriteException.Message, mongoWriteException);
             }
@@ -43,4 +43,5 @@ public abstract class Repository<T> where T : Entity
             throw;
         }
     }
+
 }

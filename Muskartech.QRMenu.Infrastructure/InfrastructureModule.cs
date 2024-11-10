@@ -10,10 +10,8 @@ namespace Muskartech.QRMenu.Infrastructure;
 
 public class InfrastructureModule : Module
 {
-    //Todo: buradaki yapıyı sadeleştirebiliyor musun ?
     protected override void Load(ContainerBuilder builder)
     {
-        
         builder.Register(context =>
             {
                 var dbSettings = context.Resolve<IOptions<MongoDbSettings>>().Value;
@@ -35,14 +33,15 @@ public class InfrastructureModule : Module
             .AutoActivate()
             .SingleInstance();
 
-
         builder.RegisterType<MuskartechRestoranDb>()
             .As<IMuskartechRestoranDb>()
             .SingleInstance();
 
-
+        
+        //Todo: aslnda bu domainModule'dan refere olmalı gibi ama o zaman da domain katmanı Infradan referans alıyor CategoryRepo sebebiyle ?
         builder.RegisterType<CategoryRepository>()
             .As<ICategoryRepository>()
             .InstancePerLifetimeScope();
+
     }
 }

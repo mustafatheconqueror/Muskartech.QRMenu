@@ -4,6 +4,6 @@ namespace Muskartech.QRMenu.Domain.Interfaces;
 
 public interface IRepository<in T> where T : Entity
 {
-    Task InsertAsync(T entity);
+    Task InsertAsync(T entity, CancellationToken cancellationToken);
 }
 

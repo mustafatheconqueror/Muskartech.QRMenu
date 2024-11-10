@@ -16,4 +16,8 @@
       <PackageReference Include="MediatR" Version="12.4.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Muskartech.QRMenu.Domain\Muskartech.QRMenu.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

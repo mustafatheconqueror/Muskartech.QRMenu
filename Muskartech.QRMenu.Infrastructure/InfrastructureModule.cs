@@ -37,15 +37,18 @@ public class InfrastructureModule : Module
             .As<IMuskartechRestoranDb>()
             .SingleInstance();
 
-        
+
         //Todo: aslnda bu domainModule'dan refere olmalı gibi ama o zaman da domain katmanı Infradan referans alıyor CategoryRepo sebebiyle ?
         builder.RegisterType<CategoryRepository>()
             .As<ICategoryRepository>()
             .InstancePerLifetimeScope();
-        
+
         builder.RegisterType<PlaceRepository>()
             .As<IPlaceRepository>()
             .InstancePerLifetimeScope();
 
+        builder.RegisterType<ProductRepository>()
+            .As<IProductRepository>()
+            .InstancePerLifetimeScope();
     }
 }

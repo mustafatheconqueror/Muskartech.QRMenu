@@ -17,30 +17,19 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryComman
 
     public async Task<CommandResult> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        //Todo: bu kontrollei bir validatöre aktar.
         if (request == null)
         {
             throw new ArgumentNullException(nameof(request), "Request cannot be null.");
         }
 
-        if (string.IsNullOrWhiteSpace(request.Name))
-        {
-            //todo: BadRequest dön :)
-            throw new ArgumentException("Category name cannot be null or empty.", nameof(request.Name));
-        }
+        var category = new Domain.Aggregates.CategoryAggregate.Category(
+            name: request.Name!,
+            description: request.Description!,
+            placeId: request.CustomerId!,
+            imageUrl: request.ImageUrl
+        );
 
-        if (string.IsNullOrWhiteSpace(request.Description))
-        {
-            throw new ArgumentException("Category description cannot be null or empty.", nameof(request.Description));
-        }
-
-        var category =
-            Domain.Aggregates.CategoryAggregate.Category.Create(request.Name!, request.Description!,
-                request.CustomerId!);
-
-        //Todo burada var = result deyip başarılı insert edilemediğinin hatası yakalanabilir. Şart değil.
         await _categoryRepository.InsertAsync(category, cancellationToken);
-
 
         return new CommandResult(HttpStatusCode.Created, new { CategoryId = category.Id });
     }

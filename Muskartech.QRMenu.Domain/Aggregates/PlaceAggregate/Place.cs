@@ -9,35 +9,23 @@ namespace Muskartech.QRMenu.Domain.Aggregates.PlaceAggregate;
 [BsonIgnoreExtraElements]
 public class Place : Entity, IAggregateRoot
 {
-    public string Name { get; private set; }
-    public string Location { get; private set; }
-    public string OwnerName { get; private set; }
-    public ContactInfo OwnerContactInfo { get; private set; }
-    public string PlaceType { get; private set; }
-
-    private Place(Guid id, string name, string location, string ownerName, ContactInfo ownerContactInfo, string placeType)
+    public Place(string name, string location, ContactInfo ownerContactInfo, int placeType, string description,
+        string taxNumber, string logoUrl)
     {
         Name = name;
         Location = location;
-        OwnerName = ownerName;
         OwnerContactInfo = ownerContactInfo;
         PlaceType = placeType;
+        Description = description;
+        TaxNumber = taxNumber;
+        LogoUrl = logoUrl;
     }
 
-    public static Place Create(Guid id, string name, string location, string ownerName, ContactInfo ownerContactInfo, string placeType)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Name cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(location))
-            throw new ArgumentException("Location cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(ownerName))
-            throw new ArgumentException("OwnerName cannot be empty.");
-
-        if (ownerContactInfo == null)
-            throw new ArgumentException("OwnerContactInfo cannot be null.");
-
-        return new Place(id, name, location, ownerName, ownerContactInfo, placeType);
-    }
+    public string Name { get; set; }
+    public string Location { get; set; }
+    public ContactInfo OwnerContactInfo { get; set; }
+    public int PlaceType { get; set; }
+    public string Description { get; set; }
+    public string TaxNumber { get; set; }
+    public string LogoUrl { get; set; }
 }

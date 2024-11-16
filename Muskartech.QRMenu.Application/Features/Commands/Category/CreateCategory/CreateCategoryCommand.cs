@@ -11,4 +11,5 @@ public class CreateCategoryCommand : IRequest<CommandResult>
     public string? Description { get; set; }
 
     public string? CustomerId { get; set; }
+    public string? ImageUrl { get; set; }
 }

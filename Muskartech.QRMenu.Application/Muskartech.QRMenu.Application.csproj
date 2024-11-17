@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Features\Commands\Category\" />
-      <Folder Include="Features\Queries\Product\" />
     </ItemGroup>
 
     <ItemGroup>

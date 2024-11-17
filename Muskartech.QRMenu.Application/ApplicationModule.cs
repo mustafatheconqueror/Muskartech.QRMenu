@@ -1,4 +1,5 @@
 using Autofac;
+using AutoMapper;
 using MediatR;
 using Muskartech.QRMenu.Application.Features.Commands.Category.CreateCategory;
 
@@ -21,6 +22,24 @@ public class ApplicationModule : Module
         builder.RegisterType<Mediator>()
             .As<IMediator>()
             .InstancePerLifetimeScope();
+        
+        builder.Register(ctx =>
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddMaps(applicationAssembly);
+            });
+
+            config.AssertConfigurationIsValid();
+
+            return config;
+        }).SingleInstance();
+
+        builder.Register(ctx =>
+        {
+            var config = ctx.Resolve<MapperConfiguration>();
+            return config.CreateMapper();
+        }).As<IMapper>().InstancePerLifetimeScope();
         
     }
 }

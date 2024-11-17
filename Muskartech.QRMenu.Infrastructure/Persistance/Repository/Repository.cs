@@ -1,4 +1,5 @@
 using Humanizer;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Muskartech.QRMenu.Domain.Entities;
 using Muskartech.QRMenu.Infrastructure.Exceptions;
@@ -44,6 +45,28 @@ public abstract class Repository<T> where T : Entity
             }
 
             throw;
+        }
+    }
+    
+    
+    public async Task<T> GetByIdAsync(string id, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var objectId = ObjectId.Parse(id);
+            var result = await Collection.Find(x => x.Id == objectId)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (result == null)
+            {
+                throw new EntityNotFoundException($"Entity with id {id} not found.", null );
+            }
+
+            return result;
+        }
+        catch (FormatException)
+        {
+            throw new ArgumentException($"The provided id {id} is not a valid ObjectId.");
         }
     }
 }

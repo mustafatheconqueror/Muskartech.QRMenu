@@ -10,6 +10,6 @@ public class CreateCategoryCommand : IRequest<CommandResult>
     public string? Name { get; set; }
     public string? Description { get; set; }
 
-    public string? CustomerId { get; set; }
+    public string? PlaceId { get; set; }
     public string? ImageUrl { get; set; }
 }

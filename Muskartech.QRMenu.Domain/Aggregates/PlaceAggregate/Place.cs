@@ -10,14 +10,13 @@ namespace Muskartech.QRMenu.Domain.Aggregates.PlaceAggregate;
 public class Place : Entity, IAggregateRoot
 {
     public Place(string name, string location, ContactInfo ownerContactInfo, int placeType, string description,
-        string taxNumber, string logoUrl)
+        string logoUrl)
     {
         Name = name;
         Location = location;
         OwnerContactInfo = ownerContactInfo;
         PlaceType = placeType;
         Description = description;
-        TaxNumber = taxNumber;
         LogoUrl = logoUrl;
     }
 
@@ -26,6 +25,5 @@ public class Place : Entity, IAggregateRoot
     public ContactInfo OwnerContactInfo { get; set; }
     public int PlaceType { get; set; }
     public string Description { get; set; }
-    public string TaxNumber { get; set; }
     public string LogoUrl { get; set; }
 }

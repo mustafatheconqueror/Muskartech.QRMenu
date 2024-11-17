@@ -25,7 +25,7 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryComman
         var category = new Domain.Aggregates.CategoryAggregate.Category(
             name: request.Name!,
             description: request.Description!,
-            placeId: request.CustomerId!,
+            placeId: request.PlaceId!,
             imageUrl: request.ImageUrl
         );
 

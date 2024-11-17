@@ -32,7 +32,6 @@ public class CreatePlaceCommandHandler : IRequestHandler<CreatePlaceCommand, Com
             ownerContactInfo: contactInfo,
             placeType: (int)request.PlaceType,
             description: request.Description,
-            taxNumber: request.TaxNumber,
             logoUrl: request.LogoUrl
         );
 

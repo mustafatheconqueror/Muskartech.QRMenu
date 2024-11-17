@@ -16,7 +16,7 @@ public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCo
             .NotEmpty().WithMessage("Description cannot be empty.")
             .MaximumLength(500).WithMessage("Description cannot exceed 500 characters.");
 
-        RuleFor(command => command.CustomerId)
+        RuleFor(command => command.PlaceId)
             .NotEmpty().WithMessage("CustomerId (PlaceId) cannot be empty.")
             .Must(IsValidObjectId).WithMessage("CustomerId must be a valid ObjectId.");
     }

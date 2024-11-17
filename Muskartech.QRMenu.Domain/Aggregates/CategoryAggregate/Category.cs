@@ -13,6 +13,7 @@ public class Category : Entity, IAggregateRoot
         Name = name;
         Description = description;
         PlaceId = placeId;
+        ImageUrl = imageUrl;
     }
 
     public string Name { get; set; }

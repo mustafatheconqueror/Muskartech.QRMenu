@@ -16,10 +16,6 @@ public class CreatePlaceCommandValidator : AbstractValidator<CreatePlaceCommand>
         RuleFor(command => command.Description)
             .MaximumLength(500).WithMessage("Description cannot exceed 500 characters.");
 
-        RuleFor(command => command.TaxNumber)
-            .NotEmpty().WithMessage("TaxNumber cannot be empty.")
-            .Matches(@"^\d{10}$").WithMessage("TaxNumber must be 10 digits."); // Example: Turkish TaxNumber format
-
         RuleFor(command => command.OwnerContactInfo)
             .NotNull().WithMessage("OwnerContactInfo cannot be null.")
             .Must(contactInfo => !string.IsNullOrWhiteSpace(contactInfo.Email) ||

@@ -1,6 +1,5 @@
 using System.Net;
 using MediatR;
-using Muskartech.QRMenu.Application.Features.Commands.Place.CreatePlace;
 using Muskartech.QRMenu.Application.Wrappers;
 using Muskartech.QRMenu.Domain.Interfaces;
 using Muskartech.QRMenu.Domain.ValueObjects;

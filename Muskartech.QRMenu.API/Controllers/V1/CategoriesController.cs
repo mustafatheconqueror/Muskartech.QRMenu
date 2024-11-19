@@ -1,5 +1,6 @@
 using System.Net;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Muskartech.QRMenu.Application.Features.Commands.Category.CreateCategory;
 using Muskartech.QRMenu.Application.Features.Queries.Category;
@@ -18,6 +19,7 @@ public class CategoriesController : BaseController
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [ProducesResponseType((int)HttpStatusCode.Conflict)]
+    [Authorize(nameof(CreateCategory))]
     public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand command, CancellationToken ct)
     {
         var commandResult = await Mediator.Send(command, ct);

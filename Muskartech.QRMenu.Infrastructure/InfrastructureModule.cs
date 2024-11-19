@@ -43,10 +43,6 @@ public class InfrastructureModule : Module
             .As<ICategoryRepository>()
             .InstancePerLifetimeScope();
 
-        builder.RegisterType<PlaceRepository>()
-            .As<IPlaceRepository>()
-            .InstancePerLifetimeScope();
-
         builder.RegisterType<ProductRepository>()
             .As<IProductRepository>()
             .InstancePerLifetimeScope();

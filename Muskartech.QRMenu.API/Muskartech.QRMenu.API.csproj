@@ -19,10 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\V1\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Muskartech.QRMenu.Application\Muskartech.QRMenu.Application.csproj" />
       <ProjectReference Include="..\Muskartech.QRMenu.Infrastructure\Muskartech.QRMenu.Infrastructure.csproj" />
     </ItemGroup>

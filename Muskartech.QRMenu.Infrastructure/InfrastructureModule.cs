@@ -46,5 +46,13 @@ public class InfrastructureModule : Module
         builder.RegisterType<ProductRepository>()
             .As<IProductRepository>()
             .InstancePerLifetimeScope();
+
+        builder.RegisterType<RestaurantRepository>()
+            .As<IRestaurantRepository>()
+            .InstancePerLifetimeScope();
+
+        builder.RegisterType<ReservationRepository>()
+            .As<IReservationRepository>()
+            .InstancePerLifetimeScope();
     }
 }

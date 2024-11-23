@@ -3,7 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Muskartech.QRMenu.Application.Features.Commands.Category.CreateCategory;
-using Muskartech.QRMenu.Application.Features.Queries.Category;
+using Muskartech.QRMenu.Application.Features.Queries.Category.GetAllCategories;
+using Muskartech.QRMenu.Application.Features.Queries.Category.GetAllCategory;
+using Muskartech.QRMenu.Application.Features.Queries.Category.GetCategoryById;
+using GetCategoryByIdViewModel = Muskartech.QRMenu.Application.Features.Queries.Category.GetCategoryByIdViewModel;
 
 namespace Muskartech.QRMenu.API.Controllers.V1;
 
@@ -30,9 +33,19 @@ public class CategoriesController : BaseController
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(GetCategoryByIdViewModel), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    public async Task<IActionResult> GetCategoryById(string id)
+    public async Task<IActionResult> GetCategoryById(string id, CancellationToken ct)
     {
         var query = new GetCategoryByIdQuery { Id = id };
-        return Ok(await Mediator.Send(query));
+        return Ok(await Mediator.Send(query, ct));
+    }
+
+
+    [HttpGet("")]
+    [ProducesResponseType(typeof(GetCategoryByIdViewModel), (int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    public async Task<IActionResult> GetAllCategories(CancellationToken ct)
+    {
+        var query = new GetAllCategoryQuery();
+        return Ok(await Mediator.Send(query, ct));
     }
 }

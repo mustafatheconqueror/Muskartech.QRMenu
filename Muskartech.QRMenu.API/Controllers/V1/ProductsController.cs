@@ -3,7 +3,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Muskartech.QRMenu.Application.Features.Commands.Product.CreateProduct;
+using Muskartech.QRMenu.Application.Features.Queries.Category;
 using Muskartech.QRMenu.Application.Features.Queries.Product;
+using Muskartech.QRMenu.Application.Features.Queries.Product.GetAllProducts;
 
 namespace Muskartech.QRMenu.API.Controllers.V1;
 
@@ -29,9 +31,18 @@ public class ProductsController : BaseController
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(GetProductByIdViewModel), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    public async Task<IActionResult> GetProductById(string id)
+    public async Task<IActionResult> GetProductById(string id, CancellationToken ct)
     {
         var query = new GetProductByIdQuery { Id = id };
-        return Ok(await Mediator.Send(query));
+        return Ok(await Mediator.Send(query, ct));
+    }
+
+    [HttpGet("")]
+    [ProducesResponseType(typeof(GetAllProductsViewModel), (int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    public async Task<IActionResult> GetAllProducts(CancellationToken ct)
+    {
+        var query = new GetAllProductsQuery();
+        return Ok(await Mediator.Send(query, ct));
     }
 }

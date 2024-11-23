@@ -6,5 +6,7 @@ public interface IRepository<T> where T : Entity
 {
     Task InsertAsync(T entity, CancellationToken cancellationToken);
     Task<T> GetByIdAsync(string id, CancellationToken cancellationToken);
+    Task<List<T>> GetAllAsync(CancellationToken cancellationToken);
+
 }
 

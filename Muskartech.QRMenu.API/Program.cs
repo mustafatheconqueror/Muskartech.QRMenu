@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
+using Muskartech.QRMenu.API.Extensions.ServiceRegistrations;
 using Muskartech.QRMenu.Application;
 using Muskartech.QRMenu.Domain;
 using Muskartech.QRMenu.Infrastructure;
@@ -21,7 +22,8 @@ builder.Services.AddControllers()
     });
 
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerRegistrations();
+
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
@@ -57,10 +59,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); 
+app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers(); 
+app.MapControllers();
 
 app.Run();

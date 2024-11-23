@@ -47,8 +47,8 @@ public abstract class Repository<T> where T : Entity
             throw;
         }
     }
-    
-    
+
+
     public async Task<T> GetByIdAsync(string id, CancellationToken cancellationToken)
     {
         try
@@ -59,7 +59,7 @@ public abstract class Repository<T> where T : Entity
 
             if (result == null)
             {
-                throw new EntityNotFoundException($"Entity with id {id} not found.", null );
+                throw new EntityNotFoundException($"Entity with id {id} not found.", null);
             }
 
             return result;
@@ -67,6 +67,22 @@ public abstract class Repository<T> where T : Entity
         catch (FormatException)
         {
             throw new ArgumentException($"The provided id {id} is not a valid ObjectId.");
+        }
+    }
+
+
+    public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            var results = await Collection.Find(_ => true)
+                .ToListAsync(cancellationToken);
+
+            return results;
+        }
+        catch (Exception mongoException)
+        {
+            throw new Exception($"mongoException : {mongoException}");
         }
     }
 }

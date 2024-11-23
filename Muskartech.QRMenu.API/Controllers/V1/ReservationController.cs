@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Muskartech.QRMenu.Application.Features.Commands.Reservation.CreateReservation;
+using Muskartech.QRMenu.Application.Features.Queries.Reservation;
 
 namespace Muskartech.QRMenu.API.Controllers.V1;
 
@@ -25,5 +26,15 @@ public class ReservationController : BaseController
     {
         var commandResult = await Mediator.Send(command, ct);
         return StatusCode((int)commandResult.HttpStatusCode, commandResult.Result);
+    }
+    
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(GetReservationByIdViewModel), (int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    [Authorize(nameof(GetReservationById))]
+    public async Task<IActionResult> GetReservationById(string id, CancellationToken ct)
+    {
+        var query = new GetReservationByIdQuery { Id = id };
+        return Ok(await Mediator.Send(query, ct));
     }
 }

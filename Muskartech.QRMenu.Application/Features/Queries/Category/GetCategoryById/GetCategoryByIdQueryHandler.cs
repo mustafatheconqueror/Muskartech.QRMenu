@@ -1,5 +1,6 @@
 using AutoMapper;
 using MediatR;
+using Muskartech.QRMenu.Application.Features.Queries.Category.GetCategoryById;
 using Muskartech.QRMenu.Domain.Interfaces;
 
 namespace Muskartech.QRMenu.Application.Features.Queries.Category;

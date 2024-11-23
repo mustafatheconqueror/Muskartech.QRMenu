@@ -8,6 +8,8 @@
 
     <ItemGroup>
       <Folder Include="Features\Commands\Category\" />
+      <Folder Include="Features\Queries\Reservation\GetAllReservations\" />
+      <Folder Include="Features\Queries\Restaurant\GetAllRestaurants\" />
     </ItemGroup>
 
     <ItemGroup>
